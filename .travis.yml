@@ -1,16 +1,20 @@
+sudo: false
+
 language:
   - php
-  - node_js
 
+addons:
+    apt:
+        packages:
+            - oracle-java9-installer
+  
 php:
   - nightly
   - 7.1
   - 7.0
   - 5.6
 
-node_js:
-  - node
-
 matrix:
   allow_failures:
     - php: nightly
+
