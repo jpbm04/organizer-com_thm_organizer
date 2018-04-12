@@ -19,5 +19,7 @@ matrix:
     - php: nightly
 
 before_install:
+        - pwd
+        - ls -lah
         - chmod +x travis/scripts/shell/test.sh
         - travis/scripts/shell/test.sh
