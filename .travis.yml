@@ -20,8 +20,12 @@ matrix:
 
 before_install:
     - ROOTWD=$(pwd)
-    - mkdir extensions
-    - cd extensions
+    - cd ..
+    - git clone git@github.com:jpbm04/organizer-plg_thm_organizer_search.git
+    - git clone git@github.com:jpbm04/organizer-plg_thm_organizer_user.git
+    - git clone git@github.com:jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
+    - git clone git@github.com:jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
+    - tree
     - chmod +x $ROOTWD/travis/scripts/shell/test.sh
     - $ROOTWD/travis/scripts/shell/test.sh
 
