@@ -26,9 +26,10 @@ before_install:
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
+    - ls -lah
     - tree
-    - chmod +x $ROOTWD/travis/scripts/shell/test.sh
-    - $ROOTWD/travis/scripts/shell/test.sh
+    - chmod +x $ROOTWD/organizer-com_thm_organizer/travis/scripts/shell/test.sh
+    - $ROOTWD/organizer-com_thm_organizer/travis/scripts/shell/test.sh
 
 after_success:
     cd $ROOTWD
