@@ -22,8 +22,8 @@ before_install:
     - ROOTWD=$(pwd)
     - mkdir extensions
     - cd extensions
-    - chmod +x travis/scripts/shell/test.sh
-    - travis/scripts/shell/test.sh
+    - chmod +x $ROOTWD/travis/scripts/shell/test.sh
+    - $ROOTWD/travis/scripts/shell/test.sh
 
 after_success:
     cd $ROOTWD
