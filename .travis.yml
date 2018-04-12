@@ -18,3 +18,6 @@ matrix:
   allow_failures:
     - php: nightly
 
+before_install:
+        - chmod +x travis/scripts/shell/test.sh
+        - travis/scripts/shell/test.sh
