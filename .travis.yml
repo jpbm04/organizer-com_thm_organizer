@@ -21,15 +21,12 @@ matrix:
 
 before_install:
     - ROOTWD=$(pwd)
-    - #cd ..
+    - mkdir -p build/temp/extensions
+    - cd build/temp/extensions
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
-    - ls -lah
-    - tree
-    - chmod +x $ROOTWD/organizer-com_thm_organizer/travis/scripts/shell/test.sh
-    - $ROOTWD/organizer-com_thm_organizer/travis/scripts/shell/test.sh
 
 after_success:
     cd $ROOTWD
