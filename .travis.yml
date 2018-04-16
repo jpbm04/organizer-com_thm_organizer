@@ -1,7 +1,7 @@
 sudo: false
 
 language:
-  - php
+  - generic
 
 addons:
     apt:
@@ -21,7 +21,7 @@ matrix:
 
 before_install:
     - ROOTWD=$(pwd)
-    - cd ..
+    - #cd ..
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
