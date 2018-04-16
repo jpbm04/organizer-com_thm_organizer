@@ -23,6 +23,7 @@ before_install:
     - ROOTWD=$(pwd)
     - mkdir -p build/temp/extensions
     - cd build/temp/extensions
+    - TRAVIS_BUILD_DIR=$(pwd)
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
