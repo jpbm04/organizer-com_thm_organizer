@@ -41,6 +41,7 @@ script:
     - mkdir -p travis/build/reports/phpunit/log-junit
     - mkdir -p travis/build/reports/phpunit/coverage-clover
     - mkdir -p travis/build/reports/phpunit/coverage-html
+    - mkdir -p travis/build/reports/selenium
     - touch travis/build/reports/csslint/dummyfile
     - touch travis/build/reports/jshint/dummyfile
     - touch travis/build/reports/pdepend/dummyfile
