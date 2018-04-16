@@ -29,5 +29,5 @@ before_install:
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
 
 after_success:
-    cd $ROOTWD
-    tree
+    - cd $ROOTWD
+    - tree
