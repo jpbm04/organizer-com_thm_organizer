@@ -20,15 +20,48 @@ matrix:
     - php: nightly
 
 before_install:
-    - ROOTWD=$(pwd)
-    - mkdir -p build/temp/extensions
-    - cd build/temp/extensions
-    - TRAVIS_BUILD_DIR=$(pwd)
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
 
+skript:
+    - mkdir -p travis/build/api
+    - touch travis/build/api/dummyfile
+    - mkdir -p travis/build/code-browser
+    - mkdir -p travis/build/reports
+    - mkdir -p travis/build/reports/csslint
+    - mkdir -p travis/build/reports/jshint
+    - mkdir -p travis/build/reports/pdepend
+    - mkdir -p travis/build/reports/phplock
+    - mkdir -p travis/build/reports/phpmd
+    - mkdir -p travis/build/reports/phpcpd
+    - mkdir -p travis/build/reports/phpcs
+    - mkdir -p travis/build/reports/phpunit
+    - mkdir -p travis/build/reports/phpunit/log-junit
+    - mkdir -p travis/build/reports/phpunit/coverage-clover
+    - mkdir -p travis/build/reports/phpunit/coverage-html
+    - touch travis/build/reports/csslint/dummyfile
+    - touch travis/build/reports/jshint/dummyfile
+    - touch travis/build/reports/pdepend/dummyfile
+    - touch travis/build/reports/phplock/dummyfile
+    - touch travis/build/reports/phpmd/dummyfile
+    - touch travis/build/reports/phpcpd/dummyfile
+    - touch travis/build/reports/phpcs/dummyfile
+    - touch travis/build/reports/phpunit/dummyfile
+    - touch travis/build/reports/phpunit/coverage-clover/dummyfile
+    - touch travis/build/reports/phpunit/coverage-html/dummyfile
+    - touch travis/build/reports/selenium/dummyfile
+    - mkdir -p travis/build/temp/dumps
+    - mkdir -p travis/extensions
+    - mkdir -p travis/updates
+    - mkdir -p travis/zips
+    - #TODO: Fehlt hier copy?
+    - rm -r com_thm_organizer@tmp
+    - rm -r mod_thm_organizer_search@tmp
+    - rm -r plg_thm_organizer_editors_xtd_groups@tmp
+    - rm -r plg_thm_organizer_editors_xtd_subjects@tmp
+    - rm -r plg_thm_organizer_user@tmp
+
 after_success:
-    - cd $ROOTWD
     - tree
