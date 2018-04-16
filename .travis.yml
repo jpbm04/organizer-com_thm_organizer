@@ -25,7 +25,7 @@ before_install:
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
 
-skript:
+script:
     - mkdir -p travis/build/api
     - touch travis/build/api/dummyfile
     - mkdir -p travis/build/code-browser
