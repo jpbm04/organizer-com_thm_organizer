@@ -57,12 +57,9 @@ script:
     - mkdir -p travis/extensions
     - mkdir -p travis/updates
     - mkdir -p travis/zips
-    - #TODO: Fehlt hier copy?
-    - rm -r com_thm_organizer@tmp
-    - rm -r mod_thm_organizer_search@tmp
-    - rm -r plg_thm_organizer_editors_xtd_groups@tmp
-    - rm -r plg_thm_organizer_editors_xtd_subjects@tmp
-    - rm -r plg_thm_organizer_user@tmp
 
+    - echo "Beginn der Syntaxprüfung PHP"
+    - find ./ -iname "*.php" | while read file; do php -l $file; done
+    
 after_success:
     - tree
