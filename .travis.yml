@@ -20,12 +20,14 @@ matrix:
     - php: nightly
 
 before_install:
+    - npm install -g jshint
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
 
 script:
+    - echo "Vorbereitungen fuer den Build-Prozess werden getroffen ..."
     - mkdir -p travis/build/api
     - touch travis/build/api/dummyfile
     - mkdir -p travis/build/code-browser
@@ -58,8 +60,30 @@ script:
     - mkdir -p travis/updates
     - mkdir -p travis/zips
 
-    - echo "Beginn der Syntaxprüfung PHP"
-    - find ./ -iname "*.php" | while read file; do php -l $file; done
+    - echo "Beginn der Syntaxprüfung für die JavaScript Dateien ..."
+    - find ./ -iname "*.css" | while read file; do java -jar travis/tools/js.jar travis/tools/csslint-rhino.js --format=text --quiet $file; done
+    
+    - echo "Beginn der Syntaxprüfung für die PHP Dateien ..."
+    - find ./ -iname "*.js" | grep -v "travis/.*" | grep -v ".*\.min\.js" | grep -v ".*jscolor\.js" | grep -v "/tristate.*\.js" | grep -v ".*/lib_jquery/.*" | grep -v ".*/lib_extjs4/.*" | grep -v ".*/extjs/ext-all\.js" | grep -v ".*/extjs/ext-all-debug\.js" | grep -v ".*/extjs/bootstrap-manifest\.js" | grep -v ".*/js/jquery-ui-1\.9\.2\.custom\.js" | grep -v ".*/js/cropbox\.js" | grep -v ".*/js/jquery\.easing\.js" | grep -v ".*/previewbutton\.js" | while read file; do jshint $file || echo ""; done
+    
+    - echo "Beginn der S<yntaxprüfung für die PHP Dateien ..."
+    - find ./ -iname "*.php" | while read file; do php -l $file > /dev/null; done
+
+    - echo "Beginn der Syntaxprüfung für die XML Dateien ..."
+    - find ./ -iname "*.xml" | while read file; do xmllint $file > /dev/null; done
+    
+    - echo "Beginn der Elementnamenueberpruefung ..."
+    - php travis/scripts/php/ext-element.php
+    - echo "TODO"
+    
+    - echo "Beginn der Präfixprüfung ..."
+    - echo "TODO"
+    
+    - echo "Joomla! wird auf dem System eingerichtet ..."
+    - echo "TODO"
+    
+    - echo "Erweiterungen aus ext-install werden in den extensions Ordner kopiert ..."
+    - echo "TODO"
     
 after_success:
     - tree
