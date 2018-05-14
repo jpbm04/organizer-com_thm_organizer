@@ -68,7 +68,7 @@ script:
     - echo "Beginn der Syntaxprüfung für die JavaScrips Dateien ..."
     - find ./ -iname "*.js" | grep -v "travis/.*" | grep -v ".*\.min\.js" | grep -v ".*jscolor\.js" | grep -v "/tristate.*\.js" | grep -v ".*/lib_jquery/.*" | grep -v ".*/lib_extjs4/.*" | grep -v ".*/extjs/ext-all\.js" | grep -v ".*/extjs/ext-all-debug\.js" | grep -v ".*/extjs/bootstrap-manifest\.js" | grep -v ".*/js/jquery-ui-1\.9\.2\.custom\.js" | grep -v ".*/js/cropbox\.js" | grep -v ".*/js/jquery\.easing\.js" | grep -v ".*/previewbutton\.js" | while read file; do jshint $file || echo ""; done
     
-    - echo "Beginn der S<yntaxprüfung für die PHP Dateien ..."
+    - echo "Beginn der Syntaxprüfung für die PHP Dateien ..."
     - find ./ -iname "*.php" | while read file; do php -l $file > /dev/null; done
 
     - echo "Beginn der Syntaxprüfung für die XML Dateien ..."
