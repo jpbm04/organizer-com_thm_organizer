@@ -1,7 +1,8 @@
 sudo: false
 
 language:
-  - generic
+  - php
+  - node_js
 
 
 addons:
@@ -13,16 +14,15 @@ addons:
   
 php:
   - nightly
-  - 7.2
+  - 7.3
   - 7.0
-  - 5.6
 
 matrix:
   allow_failures:
     - php: nightly
 
 before_install:
-    - npm install -g jshint
+#    - npm install -g jshint
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
     - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
@@ -30,8 +30,8 @@ before_install:
 
 script:
     - echo "Vorbereitungen fuer den Build-Prozess werden getroffen ..."
+    - echo "Verzeichnisstruktur wird angelegt"
     - mkdir -p travis/build/api
-    - touch travis/build/api/dummyfile
     - mkdir -p travis/build/code-browser
     - mkdir -p travis/build/reports
     - mkdir -p travis/build/reports/csslint
@@ -46,40 +46,29 @@ script:
     - mkdir -p travis/build/reports/phpunit/coverage-clover
     - mkdir -p travis/build/reports/phpunit/coverage-html
     - mkdir -p travis/build/reports/selenium
-    - touch travis/build/reports/csslint/dummyfile
-    - touch travis/build/reports/jshint/dummyfile
-    - touch travis/build/reports/pdepend/dummyfile
-    - touch travis/build/reports/phplock/dummyfile
-    - touch travis/build/reports/phpmd/dummyfile
-    - touch travis/build/reports/phpcpd/dummyfile
-    - touch travis/build/reports/phpcs/dummyfile
-    - touch travis/build/reports/phpunit/dummyfile
-    - touch travis/build/reports/phpunit/coverage-clover/dummyfile
-    - touch travis/build/reports/phpunit/coverage-html/dummyfile
-    - touch travis/build/reports/selenium/dummyfile
     - mkdir -p travis/build/temp/dumps
     - mkdir -p travis/extensions
     - mkdir -p travis/updates
     - mkdir -p travis/zips
 
-    - echo "Beginn der Syntaxprüfung für die CSS Dateien ..."
-    - find ./ -iname "*.css" | while read file; do java -jar travis/tools/js.jar travis/tools/csslint-rhino.js --format=text --quiet $file; done
+#    - echo "Beginn der Syntaxprüfung für die CSS Dateien ..."
+#    - find ./ -iname "*.css" | while read file; do java -jar travis/tools/js.jar travis/tools/csslint-rhino.js --format=text --quiet $file; done
     
-    - echo "Beginn der Syntaxprüfung für die JavaScrips Dateien ..."
-    - find ./ -iname "*.js" | grep -v "travis/.*" | grep -v ".*\.min\.js" | grep -v ".*jscolor\.js" | grep -v "/tristate.*\.js" | grep -v ".*/lib_jquery/.*" | grep -v ".*/lib_extjs4/.*" | grep -v ".*/extjs/ext-all\.js" | grep -v ".*/extjs/ext-all-debug\.js" | grep -v ".*/extjs/bootstrap-manifest\.js" | grep -v ".*/js/jquery-ui-1\.9\.2\.custom\.js" | grep -v ".*/js/cropbox\.js" | grep -v ".*/js/jquery\.easing\.js" | grep -v ".*/previewbutton\.js" | while read file; do jshint $file || echo ""; done
+#    - echo "Beginn der Syntaxprüfung für die JavaScrips Dateien ..."
+#    - find ./ -iname "*.js" | grep -v "travis/.*" | grep -v ".*\.min\.js" | grep -v ".*jscolor\.js" | grep -v "/tristate.*\.js" | grep -v ".*/lib_jquery/.*" | grep -v ".*/lib_extjs4/.*" | grep -v ".*/extjs/ext-all\.js" | grep -v ".*/extjs/ext-all-debug\.js" | grep -v ".*/extjs/bootstrap-manifest\.js" | grep -v ".*/js/jquery-ui-1\.9\.2\.custom\.js" | grep -v ".*/js/cropbox\.js" | grep -v ".*/js/jquery\.easing\.js" | grep -v ".*/previewbutton\.js" | while read file; do jshint $file || echo ""; done
     
-    - echo "Beginn der Syntaxprüfung für die PHP Dateien ..."
-    - find ./ -iname "*.php" | while read file; do php -l $file > /dev/null; done
+#    - echo "Beginn der Syntaxprüfung für die PHP Dateien ..."
+#    - find ./ -iname "*.php" | while read file; do php -l $file > /dev/null; done
 
-    - echo "Beginn der Syntaxprüfung für die XML Dateien ..."
-    - find ./ -iname "*.xml" | while read file; do xmllint $file > /dev/null; done
+#   - echo "Beginn der Syntaxprüfung für die XML Dateien ..."
+#    - find ./ -iname "*.xml" | while read file; do xmllint $file > /dev/null; done
     
     - echo "Beginn der Elementnamenueberpruefung ..."
-    - php travis/scripts/php/ext-element.php
-    - echo "TODO"
+#    - php travis/scripts/php/ext-element.php
+#    - echo "TODO"
     
-    - echo "Beginn der Präfixprüfung ..."
-    - echo "TODO"
+#    - echo "Beginn der Präfixprüfung ..."
+#    - echo "TODO"
     
     - echo "Joomla! wird auf dem System eingerichtet ..."
     - echo "TODO"
