@@ -1,6 +1,6 @@
 phpcs:
-  enabled: true
+        enabled: true
 jshint:
-  enabled: true
+        enabled: true
 scss:
-  enabled: false
+        enabled: false
