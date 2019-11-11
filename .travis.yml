@@ -51,6 +51,7 @@ before_script:
 - mkdir -p build/temp/extensions
 - cd build/temp/extensions
 - git clone https://github.com/jpbm04/organizer-com_thm_organizer.git || exit 1
+- mv organizer-com_thm_organizer com_thm_organizer
 - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git || exit 1
 - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git || exit 1
 - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git || exit 1
