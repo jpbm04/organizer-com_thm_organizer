@@ -45,21 +45,23 @@ before_install:
 - npm install jshint
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
-- git clone https://github.com/jpbm04/travis-ci.git || exit 1
+- git clone https://github.com/jpbm04/travis-ci.git
 - mv travis-ci build
 - mkdir -p build/temp/extensions
 - cd build/temp/extensions
-- git clone https://github.com/jpbm04/organizer-com_thm_organizer.git || exit 1
-- mv organizer-com_thm_organizer com_thm_organizer
-- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git || exit 1
-- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git || exit 1
-- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git || exit 1
-- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git || exit 1
+- git clone https://github.com/jpbm04/organizer-com_thm_organizer.git
+- git clone https://github.com/jpbm04/organizer-mod_thm_organizer_search.git 
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_content.git
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
 - cd ../../..
 - cp build/config/configuration.php.dist configuration.php
-- cp build/config/joomla.build.properties.dist joomla.build.properties
+- cp build/config/joomla.build.properties.dist joomla.build.properties #TODO einlesen
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
+- build/script/shell/release.sh
+
 script:
 - build/scripts/shell/init.sh
 
