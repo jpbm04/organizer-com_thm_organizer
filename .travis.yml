@@ -1,80 +1,83 @@
-sudo: false
-
-language:
-  - php
-  - node_js
-
-
-addons:
-    apt:
-        packages:
-            - libxml2-utils
-            - oracle-java9-installer
-            - tree
-  
+language: php
 php:
-  - nightly
-  - 7.3
-  - 7.0
-
+- 7.3
+- 7.1
+- 7.0
+- nightly
+stages:
+- test
+- ext
+  #- release
+jobs:
+  include:
+  - stage: ext
+    name: Ext
+    php: 7.3
+    script: build/scripts/shell/ext.sh
+  - stage: ext
+    name: Ext
+    php: 7.1
+    script: build/scripts/shell/ext.sh
+  - stage: ext
+    name: Ext
+    php: 7
+    script: build/scripts/shell/ext.sh
+  - stage: ext
+    name: Ext
+    php: nightly
+    script: build/scripts/shell/ext.sh
+    #  - stage: release
+    #    name: Release
+    #    script: build/scripts/shell/release.sh
 matrix:
   allow_failures:
-    - php: nightly
-
-before_install:
-#    - npm install -g jshint
-    - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git
-    - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
-    - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git
-    - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git
-
-script:
-    - echo "Vorbereitungen fuer den Build-Prozess werden getroffen ..."
-    - echo "Verzeichnisstruktur wird angelegt"
-    - mkdir -p travis/build/api
-    - mkdir -p travis/build/code-browser
-    - mkdir -p travis/build/reports
-    - mkdir -p travis/build/reports/csslint
-    - mkdir -p travis/build/reports/jshint
-    - mkdir -p travis/build/reports/pdepend
-    - mkdir -p travis/build/reports/phplock
-    - mkdir -p travis/build/reports/phpmd
-    - mkdir -p travis/build/reports/phpcpd
-    - mkdir -p travis/build/reports/phpcs
-    - mkdir -p travis/build/reports/phpunit
-    - mkdir -p travis/build/reports/phpunit/log-junit
-    - mkdir -p travis/build/reports/phpunit/coverage-clover
-    - mkdir -p travis/build/reports/phpunit/coverage-html
-    - mkdir -p travis/build/reports/selenium
-    - mkdir -p travis/build/temp/dumps
-    - mkdir -p travis/extensions
-    - mkdir -p travis/updates
-    - mkdir -p travis/zips
-
-#    - echo "Beginn der Syntaxprüfung für die CSS Dateien ..."
-#    - find ./ -iname "*.css" | while read file; do java -jar travis/tools/js.jar travis/tools/csslint-rhino.js --format=text --quiet $file; done
-    
-#    - echo "Beginn der Syntaxprüfung für die JavaScrips Dateien ..."
-#    - find ./ -iname "*.js" | grep -v "travis/.*" | grep -v ".*\.min\.js" | grep -v ".*jscolor\.js" | grep -v "/tristate.*\.js" | grep -v ".*/lib_jquery/.*" | grep -v ".*/lib_extjs4/.*" | grep -v ".*/extjs/ext-all\.js" | grep -v ".*/extjs/ext-all-debug\.js" | grep -v ".*/extjs/bootstrap-manifest\.js" | grep -v ".*/js/jquery-ui-1\.9\.2\.custom\.js" | grep -v ".*/js/cropbox\.js" | grep -v ".*/js/jquery\.easing\.js" | grep -v ".*/previewbutton\.js" | while read file; do jshint $file || echo ""; done
-    
-#    - echo "Beginn der Syntaxprüfung für die PHP Dateien ..."
-#    - find ./ -iname "*.php" | while read file; do php -l $file > /dev/null; done
-
-#   - echo "Beginn der Syntaxprüfung für die XML Dateien ..."
-#    - find ./ -iname "*.xml" | while read file; do xmllint $file > /dev/null; done
-    
-    - echo "Beginn der Elementnamenueberpruefung ..."
-#    - php travis/scripts/php/ext-element.php
-#    - echo "TODO"
-    
-#    - echo "Beginn der Präfixprüfung ..."
-#    - echo "TODO"
-    
-    - echo "Joomla! wird auf dem System eingerichtet ..."
-    - echo "TODO"
-    
-    - echo "Erweiterungen aus ext-install werden in den extensions Ordner kopiert ..."
-    - echo "TODO"
-    
-after_success:
+  - php: nightly
+notifications:
+  on_success: never
+  on_failure: change
+addons:
+  apt:
+    packages:
+    - libxml2-utils
     - tree
+services:
+- mysql
+before_install:
+- npm install jshint
+before_script:
+- echo "Zusätzliche Repositories werden geladen..."
+- git clone https://github.com/jpbm04/travis-ci.git || exit 1
+- mv travis-ci build
+- mkdir -p build/temp/extensions
+- cd build/temp/extensions
+- git clone https://github.com/jpbm04/organizer-com_thm_organizer-test.git || exit 1
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_subjects.git || exit 1
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_editors_xtd_groups.git || exit 1
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git || exit 1
+- git clone https://github.com/jpbm04/organizer-plg_thm_organizer_search.git || exit 1
+- cd ../../..
+- cp build/config/configuration.php.dist configuration.php
+- cp build/config/joomla.build.properties.dist joomla.build.properties
+- cp build/config/ext-install.xml.dist ext-install.xml
+- echo "OK! Zusätzliche Repositories wurden geladen."
+script:
+- build/scripts/shell/init.sh
+
+after_success:
+        - build/scripts/shell/release.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: RKC5AcWZadZrVzJDzRp/prcJOFznLnv95ztRfqHhnhjfIPjk7imbWOYNV59/iU5jYPvAnk1w41r+mz3ieV0L3uYvYkclQm7qIdqGstkM5XHXDfDzx4poZNQpE0dSokBlN8inqEDeKl19MS0HU55cIjIPq+d/3oAX4WML/qXokBkIMX/0gaGI+QlAfctEI6hNs6J4qVIN3ri6fqhKOzs60wplIKoo/u21a5ddKeZvy9C/q9mpmjmDSnsvROoShCA9oaqLjTq7IYtVH9jrJpL70LsEfE5bKNRAZUNtfkQJ7pX/C2AXSDr12HFTZulknxlZpE9NQk/+xKhF9sWK/YEnSIdQMTejCvaOG1DeQKiHIOkTxgO85sltBMtl6aSiWPtijBKdTSLvPjSGQkr36LmBGZBHdxkAWkdXmVfG2Anr72Q275N58uVTJxKOf++TlKRWhszh+Ubnwx2xhOALtqRTZoCGjkQwwpq0iZ26ARJwn+5ol+/yGCqjwJwQj8BnNZtfUD1EuyXMbzSfrZtE8onk+1Gs3dK5fhCweFEKKxkKbFvqHv21tQaYYu3PKZglAN/pjxMaTwDHUOSoqV/5N03HKQp9rneAl8vsk6TOawwr6RwCAUCXdhYI5QsfMJ+WTp+j8fjGKSepKV+6S5Xvo6jIHVUwqTs2ai/AXdvCmmEXcHY=
+  skip_cleanup: true
+  prerelease: true
+          #          condition: "${TRAVIS_TAG} =~ ^nightly-.*" #TODO: Dies ist bähbäh (Benötigt wird invertiertes Suchmuster)
+  file_glob: true
+  on:
+          all_branches: true
+          #condition: "${TRAVIS_TAG} =~ ^v[0-9].*"
+  file:
+          - archivedworkspace*.tar.gz
+          - archivedextensions*.tar.gz
+          - archivedbuildenviroment*.tar.gz
