@@ -60,13 +60,10 @@ before_script:
 - cp build/config/joomla.build.properties.dist joomla.build.properties #TODO einlesen
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
-- build/script/shell/release.sh
+- build/scripts/shell/release.sh
 
 script:
 - build/scripts/shell/init.sh
-
-after_success:
-        - build/scripts/shell/release.sh
 
 deploy:
   provider: releases
