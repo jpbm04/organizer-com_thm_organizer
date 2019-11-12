@@ -2,7 +2,7 @@ language: php
 php:
 - 7.3
 - 7.1
-- 7.0
+- 7 #!Vorsicht, darf in der Notation nicht von anderen Stages abweichen (z.B. 7 und 7.0)
 - nightly
 stages:
 - test
