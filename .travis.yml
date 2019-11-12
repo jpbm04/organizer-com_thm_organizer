@@ -7,7 +7,6 @@ php:
 stages:
 - test
 - ext
-  #- release
 jobs:
   include:
   - stage: ext
@@ -26,9 +25,6 @@ jobs:
     name: Ext
     php: nightly
     script: build/scripts/shell/ext.sh
-    #  - stage: release
-    #    name: Release
-    #    script: build/scripts/shell/release.sh
 matrix:
   allow_failures:
   - php: nightly
@@ -57,7 +53,8 @@ before_script:
 - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
 - cd ../../..
 - cp build/config/configuration.php.dist configuration.php
-- cp build/config/joomla.build.properties.dist joomla.build.properties #TODO einlesen
+- cp build/config/joomla.build.properties.default
+- #joomla.build.properties #TODO ausführen falls existent
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
 - build/scripts/shell/release.sh
