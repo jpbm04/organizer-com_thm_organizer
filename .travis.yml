@@ -53,7 +53,7 @@ before_script:
 - git clone https://github.com/jpbm04/organizer-plg_thm_organizer_user.git
 - cd ../../..
 - cp build/config/configuration.php.dist configuration.php
-- cp build/config/joomla.build.properties.default
+- build/config/joomla.build.properties.default
 - #joomla.build.properties #TODO ausführen falls existent
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
