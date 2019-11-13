@@ -1,7 +1,7 @@
 <a href="http://www.thm.de/organizer">
     <img src="com_thm_organizer/media/images/thm_organizer.png"/>
 </a>
-[![Build Status](https://travis-ci.org/jpbm04/organizer-com_thm_organizer.svg?branch=master)](https://travis-ci.org/jpbm04/organizer-com_thm_organizer)
+<img src="https://travis-ci.org/jpbm04/organizer-com_thm_organizer.svg?branch=master" alt="Grafik f&uuml;r Buildstatus">
 
 THM Organizer is responsible for the presentation and management of various scholastic resources for the University of Applied Sciences Central Hesse (THM).
 
