@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jpbm04/organizer-com_thm_organizer.svg?branch=master)](https://travis-ci.org/jpbm04/organizer-com_thm_organizer)
 <a href="http://www.thm.de/organizer">
     <img src="com_thm_organizer/media/images/thm_organizer.png"/>
 </a>
