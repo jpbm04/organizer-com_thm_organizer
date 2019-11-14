@@ -31,9 +31,9 @@ matrix:
 notifications:
   on_success: never
   on_failure: change
-  branches:
-          except:
-                - /^nightly-.*$/
+  #  branches:
+  #          except:
+  #                - /^nightly-.*$/
 
 addons:
   apt:
@@ -59,7 +59,8 @@ before_script:
 - cp build/config/configuration.php.dist configuration.php
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
-  #- build/scripts/shell/tag.sh
+- build/scripts/shell/git-clean.sh "build/temp/extensions"
+- build/scripts/shell/tag.sh
 
 script:
 - build/scripts/shell/init.sh
