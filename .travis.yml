@@ -31,6 +31,10 @@ matrix:
 notifications:
   on_success: never
   on_failure: change
+branches:
+        except:
+                - /^nightly-.*$/
+
 addons:
   apt:
     packages:
