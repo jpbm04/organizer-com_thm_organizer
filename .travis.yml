@@ -1,4 +1,3 @@
-#test
 language: php
 php:
 - 7.3
@@ -43,7 +42,7 @@ addons:
 services:
 - mysql
 before_install:
-- npm install jshint
+- npm install -g jshint
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
 - git clone https://github.com/jpbm04/travis-ci.git
