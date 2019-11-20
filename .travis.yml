@@ -59,8 +59,8 @@ addons:
     - pdepend
     - phpcpd
 #    - phpcs
-#    - phploc
-#    - phpmd
+    - phploc
+    - phpmd
 services:
 - mysql
 before_install:
