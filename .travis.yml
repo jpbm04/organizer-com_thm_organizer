@@ -57,7 +57,7 @@ addons:
     packages:
     - libxml2-utils
     - pdepend
-#    - phpcpd
+    - phpcpd
 #    - phpcs
 #    - phploc
 #    - phpmd
