@@ -1,4 +1,3 @@
-#test
 language: php
 php:
 - 7.3
@@ -8,6 +7,7 @@ php:
 stages:
 - test
 - ext
+- metrics
 jobs:
   include:
   - stage: ext
@@ -26,6 +26,22 @@ jobs:
     name: Ext
     php: nightly
     script: build/scripts/shell/ext.sh
+  - stage: metrics
+    name: Metrics
+    php: 7.3
+    script: build/scripts/shell/metrics.sh
+  - stage: metrics
+    name: Metrics
+    php: 7.1
+    script: build/scripts/shell/metrics.sh
+  - stage: metrics
+    name: Metrics
+    php: 7
+    script: build/scripts/shell/metrics.sh
+  - stage: metrics
+    name: Metrics
+    php: nightly
+    script: build/scripts/shell/metrics.sh
 matrix:
   allow_failures:
   - php: nightly
