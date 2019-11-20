@@ -57,10 +57,10 @@ addons:
     packages:
     - libxml2-utils
     - pdepend
-    - phpcpd
-    - phpcs
-    - phploc
-    - phpmd
+#    - phpcpd
+#    - phpcs
+#    - phploc
+#    - phpmd
 services:
 - mysql
 before_install:
