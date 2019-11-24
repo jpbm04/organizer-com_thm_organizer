@@ -59,7 +59,7 @@ addons:
     - pdepend
     - phpcpd
 #    - phpcs
-    - phploc
+#    - phploc
     - phpmd
 services:
 - mysql
@@ -67,7 +67,7 @@ before_install:
 - npm install -g jshint
 - composer global require "phpdocumentor/phpdocumentor"
 - composer global require "squizlabs/php_codesniffer=*"
-#- composer require phploc/phploc
+- composer global require phploc/phploc
 - composer global install
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
@@ -86,16 +86,19 @@ before_script:
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
 - build/scripts/shell/git-clean.sh "build/temp/extensions"
-- build/scripts/shell/tag.sh
 
 script:
 - build/scripts/shell/init.sh
+
+before_deploy:
+        - build/scripts/shell/tag.sh
 
 deploy:
   provider: releases
   api_key:
     secure: o2KqQTUFJwSR3K/ydyQZgNvlRS1rEiG0PT035ru6m042xBcSi+A4S2e3g+b3rjyQL/NpKPqSbaslSvMu7Xh8KD0AiM0CqyrfoOi8yjedJmDAEAk2MU+FKr0xeGpGNYwKEn8tjep4Q1hd3HNY4RnkuGGUnu7C+OBmIrfNZbGd9qPfV5UaCb5FDZCYSP8f75oUTiecve5lnH12xKetPy11p05PJPRGWjCL1A00cYrwMhvA7zVa40f0+Tf5/SE88398KTLvntLNUmAB8wCcCMwSmpWU1VGX1leG81AjBmGJ2fMyIoeUHowrC+Atw8OlUVL48izNkswYq/IAALR/IPH5+UxEkOUJh5CZl8qUZ5bSf7rb4mYgEdv94+3ajrZ0ODlQ2hh9IDwjvTkVEP2aIwYaAd6Wcv0uB4PdZjxKLTFyrrgVXYDWGyxLqxL5wq4Q7lQbMRxD5cinlyabc7KcVC8zo78dzAGUOuBTutJa5BQpiGaLJBBQeEKMZetCNhVgiAwViD+ZTgdu/CezNkSWfqpkRsd6ZL6p8JW3uFxQCrNzuO05/Vuj4Jqa3m/SqZH1YkM9qV0Xz78kR2RtkPjwKBMer8qqMfJZgq3YVnLG9vwkvAZgv7r86DSEramn9Yo2cF7gHpIdSM6Cen5DqG/io/iKMZiVLX6L0vEHTb/ZhFWoMmA=
   skip_cleanup: true
+  overwrite: true
   prerelease: true
           #          condition: "${TRAVIS_TAG} =~ ^nightly-.*" #TODO: Dies ist bähbäh (Benötigt wird invertiertes Suchmuster)
   file_glob: true
