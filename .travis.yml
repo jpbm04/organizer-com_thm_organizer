@@ -66,13 +66,13 @@ services:
 install:
 - npm install -g jshint
 - composer global require "phpdocumentor/phpdocumentor=*"
-- composer global require "squizlabs/php_codesniffer=*"
-#- composer global require "phploc/phploc=*"
+- composer global require "squizlabs/php_codesniffer"
+- composer global require "phploc/phploc"
 - composer global update
 - composer global install
-- wget http://static.pdepend.org/php/latest/pdepend.phar
-- chmod +x pdepend.phar
-- sudo mv pdepend.phar /usr/local/bin/pdepend
+  #- wget http://static.pdepend.org/php/latest/pdepend.phar
+  #- chmod +x pdepend.phar
+  #- sudo mv pdepend.phar /usr/local/bin/pdepend
 - wget https://phar.phpunit.de/phploc.phar
 - chmod +x phploc.phar
 - sudo mv phploc.phar /usr/local/bin/phploc
