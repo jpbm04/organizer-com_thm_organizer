@@ -56,7 +56,7 @@ addons:
   apt:
     packages:
     - libxml2-utils
-    - pdepend
+#    - pdepend
     - phpcpd
 #    - phpcs
 #    - phploc
@@ -70,6 +70,9 @@ install:
 #- composer global require "phploc/phploc=*"
 - composer global update
 - composer global install
+- wget http://static.pdepend.org/php/latest/pdepend.phar
+- chmod +x pdepend.phar
+- sudo mv pdepend.phar /usr/local/bin/pdepend
 - wget https://phar.phpunit.de/phploc.phar
 - chmod +x phploc.phar
 - sudo mv phploc.phar /usr/local/bin/phploc
