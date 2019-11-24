@@ -65,11 +65,11 @@ services:
 - mysql
 install:
 - npm install -g jshint
-- composer update
-- composer require "phpdocumentor/phpdocumentor=*"
-- composer require "squizlabs/php_codesniffer=*"
+- composer global update
+- composer global require "phpdocumentor/phpdocumentor=*"
+- composer global require "squizlabs/php_codesniffer=*"
 #- composer global require "phploc/phploc=*"
-- composer install
+- composer global install
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
 - git clone https://github.com/jpbm04/travis-ci.git
