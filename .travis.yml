@@ -59,14 +59,14 @@ addons:
     - pdepend
     - phpcpd
 #    - phpcs
-#    - phploc
+    - phploc
     - phpmd
 services:
 - mysql
 before_install:
 - npm install -g jshint
 - composer require phpdocumentor/phpdocumentor
-- composer require phploc/phploc
+#- composer require phploc/phploc
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
 - git clone https://github.com/jpbm04/travis-ci.git
