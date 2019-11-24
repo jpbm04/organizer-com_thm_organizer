@@ -57,7 +57,7 @@ addons:
     packages:
     - libxml2-utils
 #    - pdepend
-    - phpcpd
+#    - phpcpd
 #    - phpcs
 #    - phploc
     - phpmd
@@ -70,9 +70,9 @@ install:
 #- composer global require "squizlabs/php_codesniffer"
 - composer global update
 - composer global install
-  #- wget http://static.pdepend.org/php/latest/pdepend.phar
-  #- chmod +x pdepend.phar
-  #- sudo mv pdepend.phar /usr/local/bin/pdepend
+- wget https://phar.phpunit.de/phpcpd.phar
+- chmod +x phpcpd.phar
+- sudo mv phpcpd.phar /usr/local/bin/phpcpd
 - wget https://phar.phpunit.de/phploc.phar
 - chmod +x phploc.phar
 - sudo mv phploc.phar /usr/local/bin/phploc
