@@ -59,7 +59,7 @@ addons:
     - pdepend
     - phpcpd
 #    - phpcs
-    - phploc
+#    - phploc
     - phpmd
 services:
 - mysql
@@ -70,6 +70,9 @@ install:
 #- composer global require "phploc/phploc=*"
 - composer global update
 - composer global install
+- wget https://phar.phpunit.de/phploc.phar
+- chmod +x phploc.phar
+- mv phploc.phar /usr/local/bin/phploc
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
 - git clone https://github.com/jpbm04/travis-ci.git
