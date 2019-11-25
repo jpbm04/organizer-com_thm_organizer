@@ -59,6 +59,7 @@ addons:
     - pdepend
     - phpmd
     - php-xml
+    - graphviz
 services:
 - mysql
 install:
