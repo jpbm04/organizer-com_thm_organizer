@@ -63,8 +63,6 @@ services:
 - mysql
 install:
 - npm install -g jshint
-- composer global require "phpdocumentor/phpdocumentor=*"
-- composer global install
   #PHPcs
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
