@@ -61,6 +61,7 @@ addons:
 #    - phpcs
 #    - phploc
     - phpmd
+    - php-xml
 services:
 - mysql
 install:
@@ -107,7 +108,7 @@ deploy:
   skip_cleanup: true
   overwrite: true
   prerelease: true
-          #          condition: "${TRAVIS_TAG} =~ ^nightly-.*" #TODO: Dies ist bähbäh (Benötigt wird invertiertes Suchmuster)
+          #          condition: "${TRAVIS_TAG} =~ ^nightly-.*" #TODO: Benötigt wird invertiertes Suchmuster
   file_glob: true
   on:
           all_branches: true
