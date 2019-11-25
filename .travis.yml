@@ -56,10 +56,8 @@ addons:
   apt:
     packages:
     - libxml2-utils
-#    - pdepend
-#    - phpcpd
+    - pdepend
 #    - phpcs
-#    - phploc
     - phpmd
     - php-xml
 services:
@@ -69,11 +67,18 @@ install:
 - pear install PHP_CodeSniffer
 - composer global require "phpdocumentor/phpdocumentor=*"
 #- composer global require "squizlabs/php_codesniffer"
-- composer global update
 - composer global install
+  #PHPcs
+- wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+- wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
+- chmod +x phpcs.phar phpcbf.phar
+- sudo mv phpcs.phar /usr/local/bin/phpcs
+- sudo mv phpcbf.phar /usr/local/bin/phpcbf
+  #PHPcpd
 - wget https://phar.phpunit.de/phpcpd.phar
 - chmod +x phpcpd.phar
 - sudo mv phpcpd.phar /usr/local/bin/phpcpd
+  #PHPLOC
 - wget https://phar.phpunit.de/phploc.phar
 - chmod +x phploc.phar
 - sudo mv phploc.phar /usr/local/bin/phploc
