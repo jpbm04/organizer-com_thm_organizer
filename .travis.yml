@@ -57,16 +57,13 @@ addons:
     packages:
     - libxml2-utils
     - pdepend
-#    - phpcs
     - phpmd
     - php-xml
 services:
 - mysql
 install:
 - npm install -g jshint
-- pear install PHP_CodeSniffer
 - composer global require "phpdocumentor/phpdocumentor=*"
-#- composer global require "squizlabs/php_codesniffer"
 - composer global install
   #PHPcs
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
@@ -82,6 +79,10 @@ install:
 - wget https://phar.phpunit.de/phploc.phar
 - chmod +x phploc.phar
 - sudo mv phploc.phar /usr/local/bin/phploc
+  #PDPdoc
+- wget https://phpdoc.org/phpDocumentor.phar
+- chmod +x phpDocumentor.phar
+- sudo mv phpDocumentor.phar /usr/local/bin/phpdoc
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
 - git clone https://github.com/jpbm04/travis-ci.git
