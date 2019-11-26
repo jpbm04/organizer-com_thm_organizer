@@ -64,9 +64,9 @@ services:
 - mysql
 install:
 - npm install -g jshint
-- composer global require --dev phpdocumentor/phpdocumentor:@beta
-- composer global update
-- composer global install
+- composer require --dev phpdocumentor/phpdocumentor:@beta
+- composer update
+- composer install
   #PHPcs
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
@@ -104,6 +104,7 @@ before_script:
 - build/scripts/shell/git-clean.sh "build/temp/extensions"
 
 script:
+- composer --version
 - build/scripts/shell/init.sh
 
 before_deploy:
