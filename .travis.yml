@@ -104,7 +104,6 @@ before_script:
 - build/scripts/shell/git-clean.sh "build/temp/extensions"
 
 script:
-- phpdoc --version
 - build/scripts/shell/init.sh
 
 before_deploy:
