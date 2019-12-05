@@ -113,7 +113,7 @@ before_script:
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
 - build/scripts/shell/git-clean.sh "build/temp/extensions"
-- build/cripts/shell/tag.sh
+- build/scripts/shell/tag.sh
 
 script:
 - build/scripts/shell/init.sh
