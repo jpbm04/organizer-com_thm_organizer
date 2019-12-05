@@ -1,5 +1,6 @@
 language: php
 php:
+- 7.4
 - 7.3
 - 7.1
 - 7 #!Vorsicht, darf in der Notation nicht von anderen Stages abweichen (z.B. 7 und 7.0)
@@ -10,6 +11,10 @@ stages:
 - metrics
 jobs:
   include:
+  - stage: ext
+    name: Ext
+    php: 7.4
+    script: build/scripts/shell/ext.sh
   - stage: ext
     name: Ext
     php: 7.3
@@ -26,6 +31,10 @@ jobs:
     name: Ext
     php: nightly
     script: build/scripts/shell/ext.sh
+  - stage: metrics
+    name: Metrics
+    php: 7.4
+    script: build/scripts/shell/metrics.sh
   - stage: metrics
     name: Metrics
     php: 7.3
@@ -44,7 +53,9 @@ jobs:
     script: build/scripts/shell/metrics.sh
 matrix:
   allow_failures:
-  - php: nightly
+  - php:
+          - nightly
+          - 7.4
 notifications:
   on_success: never
   on_failure: change
@@ -102,12 +113,13 @@ before_script:
 - cp build/config/ext-install.xml.dist ext-install.xml
 - echo "OK! Zusätzliche Repositories wurden geladen."
 - build/scripts/shell/git-clean.sh "build/temp/extensions"
+- build/cripts/shell/tag.sh
 
 script:
 - build/scripts/shell/init.sh
 
-before_deploy:
-        - build/scripts/shell/tag.sh
+  #before_deploy:
+  #        - build/scripts/shell/tag.sh
 
 deploy:
   provider: releases
