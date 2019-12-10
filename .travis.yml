@@ -67,7 +67,7 @@ addons:
   apt:
     packages:
     - libxml2-utils
-    - pdepend
+      #    - pdepend
     - phpmd
     - php-xml
     - graphviz
@@ -88,6 +88,10 @@ install:
 - wget https://phar.phpunit.de/phpcpd.phar
 - chmod +x phpcpd.phar
 - sudo mv phpcpd.phar /usr/local/bin/phpcpd
+  #PDEPEND (Beta to use >PHP7)
+- wget https://github.com/pdepend/pdepend/releases/download/2.6.0-beta.1/pdepend.phar
+- chmod +x pdepend.phar
+- sudo mv pdepend.phar /usr/local/bin/pdepend
   #PHPLOC
 - wget https://phar.phpunit.de/phploc.phar
 - chmod +x phploc.phar
