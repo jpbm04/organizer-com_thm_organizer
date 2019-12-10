@@ -3,7 +3,6 @@ php:
 - 7.4
 - 7.3
 - 7.1
-- 7 #!Vorsicht, darf in der Notation nicht von anderen Stages abweichen (z.B. 7 und 7.0)
 - nightly
 stages:
 - test
@@ -25,10 +24,6 @@ jobs:
     script: build/scripts/shell/ext.sh
   - stage: ext
     name: Ext
-    php: 7
-    script: build/scripts/shell/ext.sh
-  - stage: ext
-    name: Ext
     php: nightly
     script: build/scripts/shell/ext.sh
   - stage: metrics
@@ -42,10 +37,6 @@ jobs:
   - stage: metrics
     name: Metrics
     php: 7.1
-    script: build/scripts/shell/metrics.sh
-  - stage: metrics
-    name: Metrics
-    php: 7
     script: build/scripts/shell/metrics.sh
   - stage: metrics
     name: Metrics
