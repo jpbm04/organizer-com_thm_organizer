@@ -2,7 +2,7 @@ language: php
 php:
 - 7.4
 - 7.3
-- 7.1
+- 7.2
 - nightly
 stages:
 - test
@@ -20,7 +20,7 @@ jobs:
     script: build/scripts/shell/ext.sh
   - stage: ext
     name: Ext
-    php: 7.1
+    php: 7.2
     script: build/scripts/shell/ext.sh
   - stage: ext
     name: Ext
@@ -36,7 +36,7 @@ jobs:
     script: build/scripts/shell/metrics.sh
   - stage: metrics
     name: Metrics
-    php: 7.1
+    php: 7.2
     script: build/scripts/shell/metrics.sh
   - stage: metrics
     name: Metrics
