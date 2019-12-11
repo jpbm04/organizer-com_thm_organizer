@@ -12,34 +12,24 @@ jobs:
   include:
   - stage: &ext ext
     name: Ext
-    php: 7.4
     script: build/scripts/shell/ext.sh
+    php: 7.4
   - stage: *ext
     php: 7.3
-  - stage: ext
-    name: Ext
+  - stage: *ext
     php: 7.2
-    script: build/scripts/shell/ext.sh
-  - stage: ext
-    name: Ext
+  - stage: *ext
     php: nightly
-    script: build/scripts/shell/ext.sh
-  - stage: metrics
+  - stage: &metrics metrics
     name: Metrics
+    script: build/scripts/shell/metrics.sh
     php: 7.4
-    script: build/scripts/shell/metrics.sh
-  - stage: metrics
-    name: Metrics
+  - stage: *metrics
     php: 7.3
-    script: build/scripts/shell/metrics.sh
-  - stage: metrics
-    name: Metrics
+  - stage: *metrics
     php: 7.2
-    script: build/scripts/shell/metrics.sh
-  - stage: metrics
-    name: Metrics
+  - stage: *metrics
     php: nightly
-    script: build/scripts/shell/metrics.sh
 matrix:
   allow_failures:
   - php:
