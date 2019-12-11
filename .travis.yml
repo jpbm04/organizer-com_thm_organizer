@@ -10,14 +10,12 @@ stages:
 - metrics
 jobs:
   include:
-  - stage: ext
+  - stage: &ext ext
     name: Ext
     php: 7.4
     script: build/scripts/shell/ext.sh
-  - stage: ext
-    name: Ext
+  - stage: *ext
     php: 7.3
-    script: build/scripts/shell/ext.sh
   - stage: ext
     name: Ext
     php: 7.2
