@@ -1,3 +1,4 @@
+#TEST
 language: php
 php:
 - 7.4
@@ -46,7 +47,6 @@ addons:
   apt:
     packages:
     - libxml2-utils
-      #    - pdepend
     - phpmd
     - php-xml
     - graphviz
@@ -54,9 +54,6 @@ services:
 - mysql
 install:
 - npm install -g jshint
-  #- composer require --dev phpdocumentor/phpdocumentor:@beta
-  #- composer update
-  #- composer install
   #PHPcs
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
 - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
