@@ -78,9 +78,8 @@ install:
 
 before_script:
 - echo "Zusätzliche Repositories werden geladen..."
-- git clone https://github.com/jpbm04/travis-ci.git
-- mv travis-ci build
-- git clone https://github.com/joomla/coding-standards build/coding-standards
+- git clone https://github.com/jpbm04/travis-ci.git build
+- git clone -b 3.x-dev https://github.com/joomla/coding-standards build/coding-standards
 - mkdir -p build/temp/extensions
 - cd build/temp/extensions
 - git clone https://github.com/jpbm04/organizer-com_thm_organizer.git
